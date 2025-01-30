@@ -1,15 +1,20 @@
 <?php
 namespace App\Services;
 
-use Illuminate\Support\Facades\DB;
+use App\Repositories\CidadeRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class CidadeService
 {
-    /**
-     * Retorna a lista de todas as cidades usando SQL puro
-     */
-    public function listarCidades()
+    protected CidadeRepository $cidadeRepository;
+
+    public function __construct(CidadeRepository $cidadeRepository)
     {
-        return DB::select("SELECT id, name, estado FROM cidades ORDER BY name ASC");
+        $this->cidadeRepository = $cidadeRepository;
+    }
+
+    public function listarCidades(?string $nome = null): Collection
+    {
+        return $this->cidadeRepository->listarCidades($nome);
     }
 }

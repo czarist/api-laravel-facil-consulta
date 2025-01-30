@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Services\CidadeService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class CidadeController extends Controller
 {
@@ -13,11 +14,11 @@ class CidadeController extends Controller
         $this->cidadeService = $cidadeService;
     }
 
-    /**
-     * Retorna todas as cidades em formato JSON
-     */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        return response()->json($this->cidadeService->listarCidades(), 200);
+        $nome    = $request->query('nome');
+        $cidades = $this->cidadeService->listarCidades($nome);
+
+        return response()->json($cidades);
     }
 }

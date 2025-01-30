@@ -16,4 +16,9 @@ class Medico extends Model
         'especialidade',
         'cidade_id',
     ];
+
+    public function cidade()
+    {
+        return $this->belongsTo(Cidade::class, 'cidade_id');
+    }
 }

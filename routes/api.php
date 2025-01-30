@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CidadeController;
+use App\Http\Controllers\ConsultaController;
+use App\Http\Controllers\MedicoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/cidades', [CidadeController::class, 'index']);
+Route::get('/cidades/{cidadeId}/medicos', [MedicoController::class, 'listarPorCidade']);
+
+Route::get('/medicos', [MedicoController::class, 'index']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/medicos/consulta', [ConsultaController::class, 'store']);
+});
