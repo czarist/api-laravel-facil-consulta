@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,10 +9,15 @@ class Cidade extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'cidades';
+    protected $table      = 'cidades';
 
     protected $fillable = [
         'name',
         'estado',
     ];
+
+    public function medicos()
+    {
+        return $this->hasMany(Medico::class, 'cidade_id');
+    }
 }
