@@ -31,7 +31,7 @@ class CidadesSeeder extends Seeder
                 $contador++;
                 $progresso = round(($contador / $totalDistritos) * 100);
 
-                $this->command->info("Progresso: {$progresso}% ({$contador}/{$totalDistritos})");
+                $this->command->info("Progresso inserção de cidades: {$progresso}% ({$contador}/{$totalDistritos})");
             }
 
             $this->command->info('Municipios carregados com sucesso!');

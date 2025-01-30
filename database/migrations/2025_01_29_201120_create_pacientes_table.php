@@ -12,7 +12,7 @@ class CreatePacientesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('cpf', 20);
-            $table->string('celular', 20);
+            $table->string('celular', 20)->unique();
             $table->timestamps();
             $table->softDeletes();
         });
