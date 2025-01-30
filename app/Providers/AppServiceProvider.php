@@ -10,6 +10,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\MedicoRepository::class);
         $this->app->bind(\App\Repositories\CidadeRepository::class);
         $this->app->bind(\App\Repositories\ConsultaRepository::class);
+        $this->app->bind(\App\Repositories\AuthRepository::class);
     }
 
     public function boot(): void
