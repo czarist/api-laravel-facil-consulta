@@ -14,13 +14,18 @@ class PacienteService
         $this->pacienteRepository = $pacienteRepository;
     }
 
-    public function atualizarPaciente(int $id, array $dados): Paciente
+    public function update(int $id, array $dados): Paciente
     {
-        return $this->pacienteRepository->atualizarPaciente($id, $dados);
+        return $this->pacienteRepository->update($id, $dados);
     }
 
     public function listarPacientesPorMedico(int $medicoId, ?string $nome = null, ?bool $apenasAgendadas = null): Collection
     {
         return $this->pacienteRepository->listarPacientesPorMedico($medicoId, $nome, $apenasAgendadas);
+    }
+
+    public function store(array $dados): Paciente
+    {
+        return $this->pacienteRepository->store($dados);
     }
 }

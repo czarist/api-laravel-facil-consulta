@@ -19,7 +19,7 @@ class PacienteRepository
         return $paciente;
     }
 
-    public function atualizarPaciente(int $id, array $dados): Paciente
+    public function update(int $id, array $dados): Paciente
     {
         $paciente = $this->encontrarPorId($id);
 
@@ -52,6 +52,11 @@ class PacienteRepository
         $pacientes = $query->get();
 
         return new Collection($pacientes->map(fn(Paciente $paciente) => $this->formatarPacienteComConsultas($paciente)));
+    }
+
+    public function store(array $dados): Paciente
+    {
+        return Paciente::create($dados);
     }
 
     private function formatarPacienteComConsultas(Paciente $paciente): array

@@ -27,6 +27,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/medicos/consulta', [ConsultaController::class, 'store']);
     Route::get('/medicos/{id_medico}/pacientes', [PacienteController::class, 'list']);
     Route::post('/pacientes/{id}', [PacienteController::class, 'update']);
+    Route::post('/pacientes', [PacienteController::class, 'store']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
