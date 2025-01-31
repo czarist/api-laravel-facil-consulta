@@ -5,7 +5,6 @@ use App\Http\Controllers\CidadeController;
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\PacienteController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
