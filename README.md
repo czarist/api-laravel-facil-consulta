@@ -78,6 +78,7 @@ docker-compose exec app php artisan migrate --seed
 **Listar cidades disponíveis:** `/cidades`
 
 ![Cidades](https://github.com/user-attachments/assets/3ea64574-415a-46dd-b039-6e59c8f4b2a3)
+![Cidades](https://github.com/user-attachments/assets/43038b16-91ad-4cc3-b335-7be954e16c42)
 
 ---
 
