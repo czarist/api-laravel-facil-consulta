@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Repositories\MedicoRepository;
 use Illuminate\Database\Eloquent\Collection;
+use App\Models\Medico;
 
 class MedicoService
 {
@@ -22,4 +23,10 @@ class MedicoService
     {
         return $this->medicoRepository->listarMedicosPorCidade($cidadeId, $name);
     }
+
+    public function store(array $data): Medico
+    {
+        return $this->medicoRepository->store($data);
+    }
+
 }

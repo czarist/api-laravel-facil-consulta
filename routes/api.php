@@ -22,16 +22,13 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('/me', [AuthController::class, 'me']);
+    Route::get('/user', [AuthController::class, 'me']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/medicos/consulta', [ConsultaController::class, 'store']);
     Route::get('/medicos/{id_medico}/pacientes', [PacienteController::class, 'list']);
     Route::post('/pacientes/{id}', [PacienteController::class, 'update']);
     Route::post('/pacientes', [PacienteController::class, 'store']);
-});
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::post('/medicos', [MedicoController::class, 'store']);
 });
 
 Route::get('/cidades', [CidadeController::class, 'index']);

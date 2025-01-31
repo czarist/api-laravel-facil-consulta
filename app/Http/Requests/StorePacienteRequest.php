@@ -23,7 +23,7 @@ class StorePacienteRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required'    => 'O campo nome é obrigatório.',
+            'name.required'    => 'O campo name é obrigatório.',
             'name.string'      => 'O nome deve ser uma string válida.',
             'name.max'         => 'O nome não pode ter mais de 255 caracteres.',
             'celular.required' => 'O campo celular é obrigatório.',

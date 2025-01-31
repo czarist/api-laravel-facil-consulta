@@ -38,4 +38,10 @@ class MedicoRepository
     {
         return preg_replace('/\b\w+\.\s*/', '', $name) ?? $name;
     }
+
+    public function store(array $data): Medico
+    {
+        return Medico::create($data);
+    }
+
 }
