@@ -1,8 +1,8 @@
 <?php
 namespace App\Repositories;
 
+use App\Helpers\Util;
 use App\Models\Medico;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
 class MedicoRepository
@@ -13,7 +13,7 @@ class MedicoRepository
             ->select('id', 'name', 'especialidade', 'cidade_id')
             ->orderBy('name', 'asc');
 
-        return $this->filtrarPorNome($query, $name)->get();
+        return Util::filtrarPorNome($query, $name)->get();
     }
 
     public function listarMedicosPorCidade(int $cidadeId, ?string $name = null): Collection
@@ -22,21 +22,7 @@ class MedicoRepository
             ->select('id', 'name', 'especialidade')
             ->orderBy('name', 'asc');
 
-        return $this->filtrarPorNome($query, $name)->get();
-    }
-
-    private function filtrarPorNome(Builder $query, ?string $name): Builder
-    {
-        if (! empty($name)) {
-            $nameLimpo = $this->limparNomePrefixo($name);
-            $query->whereRaw("LOWER(name) LIKE LOWER(?)", ["%$nameLimpo%"]);
-        }
-        return $query;
-    }
-
-    private function limparNomePrefixo(string $name): string
-    {
-        return preg_replace('/\b\w+\.\s*/', '', $name) ?? $name;
+        return Util::filtrarPorNome($query, $name)->get();
     }
 
     public function store(array $data): Medico

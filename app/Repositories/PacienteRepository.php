@@ -4,6 +4,7 @@ namespace App\Repositories;
 use App\Models\Paciente;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Helpers\Util;
 
 class PacienteRepository
 {
@@ -45,9 +46,7 @@ class PacienteRepository
                 $query->where('medico_id', $medicoId);
             });
 
-        if (! empty($nome)) {
-            $query->where('name', 'LIKE', "%$nome%");
-        }
+        $query = Util::filtrarPorNome($query, $nome);
 
         $pacientes = $query->get();
 

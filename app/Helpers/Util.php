@@ -1,5 +1,6 @@
 <?php
 namespace App\Helpers;
+use Illuminate\Database\Eloquent\Builder;
 
 class Util
 {
@@ -30,5 +31,21 @@ class Util
         $resto = $soma % 11;
 
         return $resto < 2 ? 0 : 11 - $resto;
+    }
+
+    public static function filtrarPorNome(Builder $query, ?string $name): Builder
+    {
+        if (! empty($name)) {
+            $nameLimpo = self::limparNomePrefixo($name);
+            $query->whereRaw("LOWER(name) LIKE LOWER(?)", ["%$nameLimpo%"]);
+        }
+        return $query;
+    }
+
+    private static function limparNomePrefixo(string $name): string
+    {
+        $nameLimpo = preg_replace('/^\b\w+\.\s*/', '', $name) ?? '';
+
+        return trim($nameLimpo) === '' ? '' : $nameLimpo;
     }
 }
