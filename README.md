@@ -64,7 +64,7 @@ docker-compose exec app php artisan migrate --seed
 ---
 
 ### Pacientes
-**Buscar detalhes do paciente:** `/pacientes/{{id_paciente}}`
+**Editar detalhes do paciente:** `/pacientes/{{id_paciente}}`
 
 ![Paciente](https://github.com/user-attachments/assets/15a4606d-dd4e-4f1a-87a9-26b4f7a9cd9d)
 
