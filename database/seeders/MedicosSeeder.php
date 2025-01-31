@@ -28,7 +28,8 @@ class MedicosSeeder extends Seeder
             $contador     = 0;
 
             foreach ($resultados as $resultado) {
-                $name          = $resultado['name']['title'] . '. ' . $resultado['name']['first'] . ' ' . $resultado['name']['last'];
+                $title         = $resultado['gender'] == 'female' ? 'Dra' : 'Dr';
+                $name          = $title . '. ' . $resultado['name']['first'] . ' ' . $resultado['name']['last'];
                 $especialidade = $especialidades[array_rand($especialidades)];
                 $cidadeId      = $cidades[array_rand($cidades)];
 
