@@ -43,6 +43,8 @@ docker-compose exec app php artisan migrate --seed
 
 ### /medicos/{{id_medico}}/pacientes
 ![image](https://github.com/user-attachments/assets/6aad0bac-0461-4af8-b94c-5832ea6453ea)
+![image](https://github.com/user-attachments/assets/03fdd9cd-ff42-4d67-b434-f81bf962573a)
+![image](https://github.com/user-attachments/assets/515fc98e-f158-4776-87e9-3b73f95c6076)
 
 ### /pacientes/{{id_paciente}}
 ![image](https://github.com/user-attachments/assets/15a4606d-dd4e-4f1a-87a9-26b4f7a9cd9d)
