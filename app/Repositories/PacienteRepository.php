@@ -50,7 +50,7 @@ class PacienteRepository
 
         $pacientes = $query->get();
 
-        return new Collection($pacientes->map(fn(Paciente $paciente) => $this->formatarPacienteComConsultas($paciente)));
+        return new Collection($pacientes->map(fn(Paciente $paciente) => self::formatarPacienteComConsultas($paciente)));
     }
 
     public function store(array $dados): Paciente
@@ -58,7 +58,7 @@ class PacienteRepository
         return Paciente::create($dados);
     }
 
-    private function formatarPacienteComConsultas(Paciente $paciente): array
+    private static function formatarPacienteComConsultas(Paciente $paciente): array
     {
         return [
             'id'        => $paciente->id,
