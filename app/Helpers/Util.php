@@ -1,5 +1,6 @@
 <?php
 namespace App\Helpers;
+
 use Illuminate\Database\Eloquent\Builder;
 
 class Util
@@ -44,8 +45,9 @@ class Util
 
     private static function limparNomePrefixo(string $name): string
     {
-        $nameLimpo = preg_replace('/^\b\w+\.\s*/', '', $name) ?? '';
+        $nameLimpo = preg_replace('/\b(mr|mrs|ms|miss|dr|dra|sr|sra|srta|prof|eng|dout)\.?(\s+)/i', '', $name) ?? '';
 
-        return trim($nameLimpo) === '' ? '' : $nameLimpo;
+        return trim($nameLimpo);
     }
+
 }
