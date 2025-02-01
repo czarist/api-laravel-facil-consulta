@@ -1,10 +1,10 @@
 <?php
 namespace App\Repositories;
 
+use App\Helpers\Util;
 use App\Models\Paciente;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Helpers\Util;
 
 class PacienteRepository
 {
@@ -50,7 +50,7 @@ class PacienteRepository
 
         $pacientes = $query->get();
 
-        return new Collection($pacientes->map(fn(Paciente $paciente) => self::formatarPacienteComConsultas($paciente)));
+        return new Collection($pacientes->map(fn(Paciente $paciente) => Util::formatarPacienteComConsultas($paciente)));
     }
 
     public function store(array $dados): Paciente
@@ -58,17 +58,4 @@ class PacienteRepository
         return Paciente::create($dados);
     }
 
-    private static function formatarPacienteComConsultas(Paciente $paciente): array
-    {
-        return [
-            'id'        => $paciente->id,
-            'name'      => $paciente->name,
-            'celular'   => $paciente->celular,
-            'cpf'       => $paciente->cpf,
-            'consultas' => $paciente->consultas->map(fn($consulta) => [
-                'consulta_id'   => $consulta->id,
-                'consulta_data' => $consulta->data,
-            ]),
-        ];
-    }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Helpers;
 
+use App\Models\Paciente;
 use Illuminate\Database\Eloquent\Builder;
 
 class Util
@@ -45,9 +46,23 @@ class Util
 
     private static function limparNomePrefixo(string $name): string
     {
-        $nameLimpo = preg_replace('/^(mr|mrs|ms|miss|dr|dra|sr|sra|srta|prof|eng|dout)\.?\s+/i', '', $name) ?? '';
+        $nameLimpo = preg_replace('/^(mr|mrs|ms|miss|dr|dra|sr|sra|srta|prof|eng|dout)\.?(\s+)/i', '', $name) ?? '';
 
         return trim($nameLimpo);
+    }
+
+    public static function formatarPacienteComConsultas(Paciente $paciente): array
+    {
+        return [
+            'id'        => $paciente->id,
+            'name'      => $paciente->name,
+            'celular'   => $paciente->celular,
+            'cpf'       => $paciente->cpf,
+            'consultas' => $paciente->consultas->map(fn($consulta) => [
+                'consulta_id'   => $consulta->id,
+                'consulta_data' => $consulta->data,
+            ]),
+        ];
     }
 
 }
